@@ -16,13 +16,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python requirements
-COPY backend/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend application source
-COPY backend/app/ app/
-COPY backend/main.py .
-COPY backend/static/ static/
+COPY app/ app/
+COPY main.py .
+COPY static/ static/
 
 # Create non-root user
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
